@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/layout/logo";
 import {Separator} from "@/components/ui/separator";
-import {Label} from "@/components/ui/label";
 
 export const FooterSection = () => {
     return (

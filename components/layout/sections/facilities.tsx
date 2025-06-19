@@ -68,7 +68,7 @@ export const FacilitiesSection = () => {
                             </div>
                             <div className="absolute bottom-0 start-0 end-0 p-2 sm:p-4">
                                 <div className="text-sm font-semibold rounded-lg bg-primary-foreground p-4 md:text-xl">
-                                    Pride 2021
+                                    Pride 2025
                                 </div>
                             </div>
                         </Link>
