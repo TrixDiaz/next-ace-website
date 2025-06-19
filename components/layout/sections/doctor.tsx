@@ -208,7 +208,7 @@ export const DoctorSection = () => {
             ],
         },
         {
-            imageUrl: "/doctors/miguelcarlomendoza.jfif",
+            imageUrl: "/doctors/miguelcarlomendoza.png",
             firstName: "Miguel Carlo",
             lastName: "Mendoza",
             specialization: ["ENT"],

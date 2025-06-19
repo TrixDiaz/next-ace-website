@@ -51,9 +51,9 @@ export const HeroSection = ({
                             >
                                 {description}
                             </TextAnimate>
-                            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                               <ImageGalleryDialog/>
-                                <PriceList/>
+                            <div className="flex flex-col sm:flex-row justify-start items-start gap-4 w-full sm:w-auto">
+                               <div><ImageGalleryDialog/></div>
+                                <div><PriceList/></div>
                             </div>
                         </div>
                         <FeaturedCarousel/>

@@ -9,7 +9,7 @@ export const PriceList: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="">
             <Button
                 variant="outline"
                 onClick={openPriceList} >
