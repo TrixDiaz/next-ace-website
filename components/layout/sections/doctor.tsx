@@ -268,7 +268,7 @@ export const DoctorSection = () => {
     };
 
     return (
-        <section id="doctors" className="container max-w-7xl mx-auto py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <section id="doctors" className="max-w-7xl mx-auto py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                 <h2 className="text-sm font-semibold tracking-wider text-primary uppercase mb-2">
                     Our Team

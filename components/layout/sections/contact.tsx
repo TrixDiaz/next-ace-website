@@ -120,7 +120,7 @@ export default function ContactSection({
     }
 
     return (
-        <section id="contact" className="container max-w-7xl mx-auto py-12 md:py-24">
+        <section id="contact" className="max-w-7xl mx-auto py-12 md:py-24">
             <div className="mb-8">
                 <div className="mb-4">
                     <h2 className="text-lg text-primary mb-2 tracking-wider">{title}</h2>

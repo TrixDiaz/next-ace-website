@@ -5,7 +5,7 @@ import {FeaturedCarousel} from "@/components/layout/feature-carousel";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import {ImageGalleryDialog} from "@/components/layout/sections/image-collection";
-import {PriceList} from "@/components/layout/pricelist";
+import {Price} from "@/components/layout/price";
 
 
 interface HeroProps {
@@ -24,7 +24,7 @@ export const HeroSection = ({
     return (
         <div>
             <section className="w-full py-8 md:py-16">
-                <div className="container max-w-7xl px-4 mx-auto">
+                <div className="max-w-7xl px-4 mx-auto">
                     <div className="grid items-center gap-12 lg:grid-cols-2">
                         <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-6">
                             {badge && (
@@ -53,7 +53,7 @@ export const HeroSection = ({
                             </TextAnimate>
                             <div className="flex flex-col sm:flex-row justify-start items-start gap-4 w-full sm:w-auto">
                                <div><ImageGalleryDialog/></div>
-                                <div><PriceList/></div>
+                                <div><Price/></div>
                             </div>
                         </div>
                         <FeaturedCarousel/>

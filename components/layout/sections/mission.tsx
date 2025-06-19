@@ -4,7 +4,7 @@ import {HandshakeIcon, HeartHandshake} from "lucide-react";
 
 export const MissionVisionSection = () => {
     return (
-        <section className="container w-full py-12 md:py-24">
+        <section className="w-full py-12 md:py-24">
             <div className="max-w-7xl mx-auto space-y-4">
                 <Label className="text-xl text-gray-400 ">Our Values</Label>
                 <Label className="text-2xl font-bold">Mission and Vision</Label>

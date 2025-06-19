@@ -134,77 +134,79 @@ const LabPricelistTableSection = () => {
 
 
     return (
-        <div className="w-full max-w-7xl mx-auto p-4 shadow-inner bg-white dark:bg-gray-800 rounded-md">
-            {/* Header */}
-            <div className="text-center mb-6">
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">LABORATORY PRICELIST</h1>
-                <p className="text-sm text-gray-600 dark:text-white">CN# 0514-2025</p>
-                <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mt-1">{selectedBranch}</p>
+        <div className="w-full bg-white dark:bg-gray-800 rounded-md">
+            {/* Header - reduced vertical spacing */}
+            <div className="text-center mb-2">
+                <h1 className="text-xl font-bold text-gray-900 dark:text-white">LABORATORY PRICELIST</h1>
+                <p className="text-xs text-gray-600 dark:text-white">CN# 0514-2025</p>
+                <p className="text-xs font-medium text-blue-600 dark:text-blue-400">{selectedBranch}</p>
             </div>
 
-            {/* Search and Filter Controls */}
-            <div className="mb-6 flex flex-col sm:flex-row gap-4">
-                <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            {/* Search and Filter Controls - more compact layout */}
+            <div className="mb-2 flex flex-col gap-1">
+                <div className="relative">
+                    <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 h-3 w-3" />
                     <input
                         type="text"
                         placeholder="Search tests..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full pl-7 pr-2 py-1 text-sm border border-gray-300 rounded"
                     />
                 </div>
 
-                <div className="relative sm:w-48">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                        <SelectTrigger className="w-full pl-10">
-                            <SelectValue placeholder="Select branch" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {branches.map(branch => (
-                                <SelectItem key={branch} value={branch}>
-                                    {branch}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
+                <div className="flex gap-1">
+                    <div className="relative flex-1">
+                        <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 h-3 w-3" />
+                        <Select value={selectedBranch} onValueChange={setSelectedBranch}>
+                            <SelectTrigger className="w-full pl-7 h-8 text-sm">
+                                <SelectValue placeholder="Select branch" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {branches.map(branch => (
+                                    <SelectItem key={branch} value={branch}>
+                                        {branch}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
 
-                <div className="relative sm:w-64">
-                    <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                        <SelectTrigger className="w-full pl-10">
-                            <SelectValue placeholder="Select category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="all">All Categories</SelectItem>
-                            {categories.map(category => (
-                                <SelectItem key={category} value={category}>
-                                    {category}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
+                    <div className="relative flex-1">
+                        <Filter className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 h-3 w-3" />
+                        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                            <SelectTrigger className="w-full pl-7 h-8 text-sm">
+                                <SelectValue placeholder="Select category" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Categories</SelectItem>
+                                {categories.map(category => (
+                                    <SelectItem key={category} value={category}>
+                                        {category}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
             </div>
 
-            {/* Single Table View */}
-            <div className="overflow-x-auto shadow-lg rounded-lg">
-                <table className="w-full border-collapse bg-white dark:bg-gray-800">
+            {/* Table - reduced cell padding */}
+            <div className="overflow-x-auto">
+                <table className="w-full border-collapse bg-white dark:bg-gray-800 text-sm">
                     <thead>
                     <tr className="bg-gray-50 dark:bg-gray-700">
-                        <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100">Test</th>
-                        <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center font-semibold text-gray-900 dark:text-gray-100">Code</th>
-                        <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-right font-semibold text-gray-900 dark:text-gray-100">Price</th>
+                        <th className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-left font-semibold text-gray-900 dark:text-gray-100">Test</th>
+                        <th className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-center font-semibold text-gray-900 dark:text-gray-100">Code</th>
+                        <th className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-right font-semibold text-gray-900 dark:text-gray-100">Price</th>
                     </tr>
                     </thead>
                     <tbody>
                     {filteredTests.map((test, index) => (
                         <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 font-medium text-gray-900 dark:text-gray-100">{test.test}</td>
-                            <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-gray-700 dark:text-gray-300">{test.code}</td>
-                            <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-right font-semibold text-gray-900 dark:text-gray-100">
+                            <td className="border border-gray-300 dark:border-gray-600 px-2 py-1 font-medium text-gray-900 dark:text-gray-100">{test.test}</td>
+                            <td className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-center text-gray-700 dark:text-gray-300">{test.code}</td>
+                            <td className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-right font-semibold text-gray-900 dark:text-gray-100">
                                 ₱{getCurrentPrice(test).toFixed(2)}
                             </td>
                         </tr>
@@ -213,15 +215,15 @@ const LabPricelistTableSection = () => {
                 </table>
             </div>
 
-            {/* Footer */}
-            <div className="mt-8 text-center text-sm text-gray-600 dark:text-white space-y-2">
+            {/* Footer - reduced spacing */}
+            <div className="mt-2 text-center text-xs text-gray-600 dark:text-white space-y-1">
                 <p className="font-medium">***Prices are subject to change without prior notice***</p>
                 <p>Please call us for price of other special tests not on the list</p>
-                <p className="text-xs italic">Updated Pricelist as of May 14, 2025</p>
+                <p className="italic">Updated Pricelist as of May 14, 2025</p>
             </div>
 
             {searchTerm && (
-                <div className="mt-4 text-sm text-gray-600 text-center dark:text-white">
+                <div className="mt-2 text-xs text-gray-600 text-center dark:text-white">
                     Showing {filteredTests.length} test(s) matching &ldquo;{searchTerm}&rdquo; for {selectedBranch}
                 </div>
             )}

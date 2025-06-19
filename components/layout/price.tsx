@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import LabPricelistTableSection from './sections/pricelist';
 
-export const PriceList: React.FC = () => {
+export const Price: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const openPriceList = () => {

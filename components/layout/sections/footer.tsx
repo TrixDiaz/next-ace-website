@@ -4,7 +4,7 @@ import {Separator} from "@/components/ui/separator";
 
 export const FooterSection = () => {
     return (
-        <footer id="footer" className="container max-w-7xl mx-auto py-12">
+        <footer id="footer" className="max-w-7xl mx-auto py-12">
             <div
                 className="shadow-md p-6 bg-card border border-secondary rounded-2xl">
                 <div className="flex flex-row justify-between items-center gap-4">

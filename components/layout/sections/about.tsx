@@ -37,7 +37,7 @@ const benefitList: AboutProps[] = [
 
 export const AboutSection = () => {
     return (
-        <section id="aboutus" className="container max-w-7xl mx-auto py-12 sm:py-24">
+        <section id="aboutus" className="max-w-7xl mx-auto py-12 sm:py-24">
             <div className="grid lg:grid-cols-2 place-items-center lg:gap-24">
                 <div>
                     <h2 className="text-lg text-primary mb-2 tracking-wider">About Us</h2>
