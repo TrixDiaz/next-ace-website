@@ -1,20 +1,38 @@
-import React from 'react';
-import {Button} from '@/components/ui/button';
+"use client"
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import LabPricelistTableSection from './sections/pricelist';
 
 export const PriceList: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     const openPriceList = () => {
-        // Assuming the PDF is in the public folder
-        const pdfUrl = '/ace-pricelist-2025.pdf';
-        window.open(pdfUrl, '_blank');
+        setIsOpen(true);
     };
 
     return (
         <div className="">
             <Button
                 variant="outline"
-                onClick={openPriceList} >
+                onClick={openPriceList}
+            >
                 View Price List
             </Button>
+
+            <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <DialogContent className="sm:max-w-[800px] md:max-w-[1000px] lg:max-w-[1200px] w-[90vw] max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Laboratory Price List</DialogTitle>
+                    </DialogHeader>
+                    <LabPricelistTableSection />
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };

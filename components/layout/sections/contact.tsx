@@ -1,19 +1,21 @@
 "use client";
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     Card,
     CardContent,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Building2, Clock, Mail, Phone, MapPin } from "lucide-react";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
+import {Button} from "@/components/ui/button";
+import {Badge} from "@/components/ui/badge";
+import {Building2, Clock, Mail, Phone, MapPin, Facebook} from "lucide-react";
+import {Label} from "@/components/ui/label";
+import {Separator} from "@/components/ui/separator";
+import Link from "next/link";
 
 interface BranchData {
     id: string;
     name: string;
     address: string;
+    pageurl?: string;
     phone: {
         name: string;
         number: string;
@@ -30,6 +32,7 @@ interface ContactProps {
     title?: string;
     subtitle?: string;
     description?: string;
+    page?: string;
     findUs?: string;
     callUs?: string;
     mailUs?: string;
@@ -43,16 +46,17 @@ const defaultBranches: BranchData[] = [
         name: "Fairview Branch",
         address: "1 CPE Building, B2 Marlboro Street, Commonwealth Ave, Quezon City, 1121 Metro Manila",
         email: "acediagnosticscorp@gmail.com",
+        pageurl: "https://www.facebook.com/acediagnosticsfairview",
         phone: [
-            { name: "Reception", number: "(02) 8461 3905" },
-            { name: "Secretary", number: "(02) 8461 3890" },
-            { name: "Cashier", number: "(02) 8461 3901 / 8461 3906" },
-            { name: "Inquiry (Smart)", number: "(+63) 918 962 7616" },
-            { name: "Inquiry (Globe)", number: "(+63) 917 562 5222" },
+            {name: "Reception", number: "(02) 8461 3905"},
+            {name: "Secretary", number: "(02) 8461 3890"},
+            {name: "Cashier", number: "(02) 8461 3901 / 8461 3906"},
+            {name: "Inquiry (Smart)", number: "(+63) 918 962 7616"},
+            {name: "Inquiry (Globe)", number: "(+63) 917 562 5222"},
         ],
         officeHours: [
-            { day: "Monday to Saturday", time: "7:00AM to 4:00PM" },
-            { day: "Sunday", time: "7:00AM - 3:00PM" },
+            {day: "Monday to Saturday", time: "7:00AM to 4:00PM"},
+            {day: "Sunday", time: "7:00AM - 3:00PM"},
         ],
         iframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.1362300027286!2d121.07077137681682!3d14.704887037910597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b09e7d6d7631%3A0x481c3ba178e14513!2sACE%20Diagnostics!5e0!3m2!1sen!2sph!4v1750133543825!5m2!1sen!2sph"
     },
@@ -61,16 +65,17 @@ const defaultBranches: BranchData[] = [
         name: "Novaliches Branch",
         address: "789 Quirino Hwy, Novaliches, Quezon City, 1117 Metro Manila",
         email: "novaliches@acediagnosticscorp.com",
+        pageurl: "https://www.facebook.com/acediagnosticsnovaliches",
         phone: [
-            { name: "Reception", number: "(02) 8123 4567" },
-            { name: "Secretary", number: "(02) 8123 4568" },
-            { name: "Cashier", number: "(02) 8123 4569" },
-            { name: "Inquiry (Smart)", number: "(+63) 919 123 4567" },
-            { name: "Inquiry (Globe)", number: "(+63) 917 123 4567" },
+            {name: "Reception", number: "(02) 8123 4567"},
+            {name: "Secretary", number: "(02) 8123 4568"},
+            {name: "Cashier", number: "(02) 8123 4569"},
+            {name: "Inquiry (Smart)", number: "(+63) 919 123 4567"},
+            {name: "Inquiry (Globe)", number: "(+63) 917 123 4567"},
         ],
         officeHours: [
-            { day: "Monday to Saturday", time: "7:00AM to 4:00PM" },
-            { day: "Sunday", time: "Closed" },
+            {day: "Monday to Saturday", time: "7:00AM to 4:00PM"},
+            {day: "Sunday", time: "Closed"},
         ],
         iframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.0609265024123!2d121.03640377463174!3d14.709146574410932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b0e133ba2629%3A0x73cab2ed9f0da93a!2sACE%20Diagnostics!5e0!3m2!1sen!2sph!4v1750225480531!5m2!1sen!2sph"
     },
@@ -79,16 +84,17 @@ const defaultBranches: BranchData[] = [
         name: "Valenzuela Branch",
         address: "Unit 116-119, Arbortowne Plaza 2, Valenzuela, Metro Manila",
         email: "valenzuela@acediagnosticscorp.com",
+        pageurl: "https://www.facebook.com/acediagnosticsvalenzuela",
         phone: [
-            { name: "Reception", number: "(02) 8789 0123" },
-            { name: "Secretary", number: "(02) 8789 0124" },
-            { name: "Cashier", number: "(02) 8789 0125" },
-            { name: "Inquiry (Smart)", number: "(+63) 920 789 0123" },
-            { name: "Inquiry (Globe)", number: "(+63) 917 789 0123" },
+            {name: "Reception", number: "(02) 8789 0123"},
+            {name: "Secretary", number: "(02) 8789 0124"},
+            {name: "Cashier", number: "(02) 8789 0125"},
+            {name: "Inquiry (Smart)", number: "(+63) 920 789 0123"},
+            {name: "Inquiry (Globe)", number: "(+63) 917 789 0123"},
         ],
         officeHours: [
-            { day: "Monday to Saturday", time: "7:00AM to 4:00PM" },
-            { day: "Sunday", time: "Closed" },
+            {day: "Monday to Saturday", time: "7:00AM to 4:00PM"},
+            {day: "Sunday", time: "Closed"},
         ],
         iframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.437321056943!2d120.98056747463136!3d14.687843774935683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b56d6197ecc7%3A0x1cbc500258b13c2c!2sACE%20DIAGNOSTICS!5e0!3m2!1sen!2sph!4v1750225567117!5m2!1sen!2sph"
     }
@@ -100,6 +106,7 @@ export default function ContactSection({
                                            description = "Ace Diagnostics is committed to providing accurate, reliable, and timely medical testing services. Our state-of-the-art laboratory and experienced team ensure high-quality diagnostics to support your health and well-being. Partner with us for trusted results and exceptional care.",
                                            findUs = "Find Us",
                                            callUs = "Call Us",
+                                           page = "Facebook Page",
                                            mailUs = "Mail Us",
                                            visitUs = "Visit Us",
                                            branches = defaultBranches
@@ -124,7 +131,7 @@ export default function ContactSection({
                 {/* Branch Filter */}
                 <div className="flex flex-wrap gap-2 mb-8">
                     <span className="text-sm font-medium text-muted-foreground mr-2 flex items-center">
-                        <MapPin className="w-4 h-4 mr-1" />
+                        <MapPin className="w-4 h-4 mr-1"/>
                         Select Branch:
                     </span>
                     {branches.map((branch) => (
@@ -152,7 +159,7 @@ export default function ContactSection({
                         {/* Address */}
                         <div>
                             <div className="flex gap-2 mb-2">
-                                <Building2 className="w-5 h-5 text-primary" />
+                                <Building2 className="w-5 h-5 text-primary"/>
                                 <div className="font-bold text-lg">{findUs}</div>
                             </div>
                             <div className="text-muted-foreground pl-7">
@@ -167,7 +174,7 @@ export default function ContactSection({
                                 {currentBranch.phone.length > 0 && (
                                     <div>
                                         <div className="flex gap-2 mb-3">
-                                            <Phone className="w-5 h-5 text-primary" />
+                                            <Phone className="w-5 h-5 text-primary"/>
                                             <div className="font-bold text-lg">{callUs}</div>
                                         </div>
 
@@ -181,7 +188,7 @@ export default function ContactSection({
                                                         {entry.number}
                                                     </p>
                                                     {idx !== currentBranch.phone.length - 1 && (
-                                                        <Separator className="mt-2" />
+                                                        <Separator className="mt-2"/>
                                                     )}
                                                 </div>
                                             ))}
@@ -195,7 +202,7 @@ export default function ContactSection({
                                 {/* Email */}
                                 <div>
                                     <div className="flex gap-2 mb-2">
-                                        <Mail className="w-5 h-5 text-primary" />
+                                        <Mail className="w-5 h-5 text-primary"/>
                                         <div className="font-bold text-lg">{mailUs}</div>
                                     </div>
                                     <div className="text-foreground font-medium pl-7">
@@ -208,7 +215,7 @@ export default function ContactSection({
                                     {currentBranch.officeHours.length > 0 && (
                                         <div>
                                             <div className="flex gap-2 mb-2">
-                                                <Clock className="w-5 h-5 text-primary" />
+                                                <Clock className="w-5 h-5 text-primary"/>
                                                 <div className="font-bold text-lg">{visitUs}</div>
                                             </div>
                                             <div className="space-y-1 pl-7">
@@ -223,6 +230,22 @@ export default function ContactSection({
                                             </div>
                                         </div>
                                     )}
+                                </div>
+
+                                {/* Facebook Page */}
+                                <div>
+                                    <div className="flex gap-2 mb-2">
+                                        <Facebook className="w-5 h-5 text-primary"/>
+                                        <div className="font-bold text-lg">{page}</div>
+                                    </div>
+                                    <div className="text-foreground font-medium pl-7">
+                                        <Button asChild variant="default">
+                                            <Link href={currentBranch.pageurl || '#'}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                                  className="text-md">Check it now.</Link>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
