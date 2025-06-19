@@ -59,7 +59,7 @@ export const ImageGalleryDialog = () => {
 
     return (
         <div>
-            <Button onClick={() => setIsOpen(true)} className="flex items-center gap-2">
+            <Button onClick={() => setIsOpen(true)} className="flex items-center gap-2 text-white">
                 <Images className="w-5 h-5" />
                 Check out our facilities
             </Button>
@@ -78,7 +78,7 @@ export const ImageGalleryDialog = () => {
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => setIsOpen(false)}
-                                    className="hover:bg-red-100"
+                                    className="hover:bg-red-100 dark:text-black"
                                 >
                                     <X className="w-4 h-4" />
                                 </Button>
@@ -107,7 +107,7 @@ export const ImageGalleryDialog = () => {
 
                         {/* Content */}
                         <div className="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100">
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {filteredImages.map((image, index) => (
                                     <div
                                         key={image.id}
