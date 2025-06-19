@@ -1,245 +1,249 @@
 "use client";
+import React, { useState } from 'react';
 import {
     Card,
     CardContent,
-    CardFooter,
-    CardHeader,
 } from "@/components/ui/card";
-import { Building2, Clock, Mail, Phone } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Building2, Clock, Mail, Phone, MapPin } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 
-const formSchema = z.object({
-    firstName: z.string().min(2).max(255),
-    lastName: z.string().min(2).max(255),
-    email: z.string().email(),
-    subject: z.string().min(2).max(255),
-    message: z.string(),
-});
+interface BranchData {
+    id: string;
+    name: string;
+    address: string;
+    phone: {
+        name: string;
+        number: string;
+    }[];
+    email: string;
+    officeHours: {
+        day: string;
+        time: string;
+    }[];
+    iframe: string;
+}
 
-export const ContactSection = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            subject: "Web Development",
-            message: "",
-        },
-    });
+interface ContactProps {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    findUs?: string;
+    callUs?: string;
+    mailUs?: string;
+    visitUs?: string;
+    branches?: BranchData[];
+}
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        const { firstName, lastName, email, subject, message } = values;
-        console.log(values);
+const defaultBranches: BranchData[] = [
+    {
+        id: "fairview",
+        name: "Fairview Branch",
+        address: "1 CPE Building, B2 Marlboro Street, Commonwealth Ave, Quezon City, 1121 Metro Manila",
+        email: "acediagnosticscorp@gmail.com",
+        phone: [
+            { name: "Reception", number: "(02) 8461 3905" },
+            { name: "Secretary", number: "(02) 8461 3890" },
+            { name: "Cashier", number: "(02) 8461 3901 / 8461 3906" },
+            { name: "Inquiry (Smart)", number: "(+63) 918 962 7616" },
+            { name: "Inquiry (Globe)", number: "(+63) 917 562 5222" },
+        ],
+        officeHours: [
+            { day: "Monday to Saturday", time: "7:00AM to 4:00PM" },
+            { day: "Sunday", time: "7:00AM - 3:00PM" },
+        ],
+        iframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.1362300027286!2d121.07077137681682!3d14.704887037910597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b09e7d6d7631%3A0x481c3ba178e14513!2sACE%20Diagnostics!5e0!3m2!1sen!2sph!4v1750133543825!5m2!1sen!2sph"
+    },
+    {
+        id: "novaliches",
+        name: "Novaliches Branch",
+        address: "789 Quirino Hwy, Novaliches, Quezon City, 1117 Metro Manila",
+        email: "novaliches@acediagnosticscorp.com",
+        phone: [
+            { name: "Reception", number: "(02) 8123 4567" },
+            { name: "Secretary", number: "(02) 8123 4568" },
+            { name: "Cashier", number: "(02) 8123 4569" },
+            { name: "Inquiry (Smart)", number: "(+63) 919 123 4567" },
+            { name: "Inquiry (Globe)", number: "(+63) 917 123 4567" },
+        ],
+        officeHours: [
+            { day: "Monday to Saturday", time: "7:00AM to 4:00PM" },
+            { day: "Sunday", time: "Closed" },
+        ],
+        iframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.0609265024123!2d121.03640377463174!3d14.709146574410932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b0e133ba2629%3A0x73cab2ed9f0da93a!2sACE%20Diagnostics!5e0!3m2!1sen!2sph!4v1750225480531!5m2!1sen!2sph"
+    },
+    {
+        id: "valenzuela",
+        name: "Valenzuela Branch",
+        address: "Unit 116-119, Arbortowne Plaza 2, Valenzuela, Metro Manila",
+        email: "valenzuela@acediagnosticscorp.com",
+        phone: [
+            { name: "Reception", number: "(02) 8789 0123" },
+            { name: "Secretary", number: "(02) 8789 0124" },
+            { name: "Cashier", number: "(02) 8789 0125" },
+            { name: "Inquiry (Smart)", number: "(+63) 920 789 0123" },
+            { name: "Inquiry (Globe)", number: "(+63) 917 789 0123" },
+        ],
+        officeHours: [
+            { day: "Monday to Saturday", time: "7:00AM to 4:00PM" },
+            { day: "Sunday", time: "Closed" },
+        ],
+        iframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.437321056943!2d120.98056747463136!3d14.687843774935683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b56d6197ecc7%3A0x1cbc500258b13c2c!2sACE%20DIAGNOSTICS!5e0!3m2!1sen!2sph!4v1750225567117!5m2!1sen!2sph"
+    }
+];
 
-        const mailToLink = `mailto:leomirandadev@gmail.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
+export default function ContactSection({
+                                           title = "Contact",
+                                           subtitle = "Connect With Us",
+                                           description = "Ace Diagnostics is committed to providing accurate, reliable, and timely medical testing services. Our state-of-the-art laboratory and experienced team ensure high-quality diagnostics to support your health and well-being. Partner with us for trusted results and exceptional care.",
+                                           findUs = "Find Us",
+                                           callUs = "Call Us",
+                                           mailUs = "Mail Us",
+                                           visitUs = "Visit Us",
+                                           branches = defaultBranches
+                                       }: ContactProps) {
+    const [selectedBranch, setSelectedBranch] = useState<string>(branches[0]?.id || "");
 
-        window.location.href = mailToLink;
+    const currentBranch = branches.find(branch => branch.id === selectedBranch) || branches[0];
+
+    if (!currentBranch) {
+        return <div>No branches available</div>;
     }
 
     return (
-        <section id="contact" className="container max-w-[90%] mx-auto py-24 sm:py-32">
+        <section id="contact" className="container max-w-7xl mx-auto py-12 md:py-24">
+            <div className="mb-8">
+                <div className="mb-4">
+                    <h2 className="text-lg text-primary mb-2 tracking-wider">{title}</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">{subtitle}</h2>
+                </div>
+                <p className="mb-6 text-muted-foreground lg:w-2/3">{description}</p>
+
+                {/* Branch Filter */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                    <span className="text-sm font-medium text-muted-foreground mr-2 flex items-center">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        Select Branch:
+                    </span>
+                    {branches.map((branch) => (
+                        <Button
+                            key={branch.id}
+                            variant={selectedBranch === branch.id ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setSelectedBranch(branch.id)}
+                            className={`relative ${selectedBranch === branch.id ? 'text-white' : ''}`}
+                        >
+                            {branch.name}
+                            {selectedBranch === branch.id && (
+                                <Badge variant="secondary" className="ml-2 px-1 py-0 text-xs">
+                                    Current
+                                </Badge>
+                            )}
+                        </Button>
+                    ))}
+                </div>
+            </div>
+
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <div className="mb-4">
-                        <h2 className="text-lg text-primary mb-2 tracking-wider">
-                            Contact
-                        </h2>
-
-                        <h2 className="text-3xl md:text-4xl font-bold">Connect With Us</h2>
-                    </div>
-                    <p className="mb-8 text-muted-foreground lg:w-5/6">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-                        ipsam sint enim exercitationem ex autem corrupti quas tenetur
-                    </p>
-
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-6">
+                        {/* Address */}
                         <div>
-                            <div className="flex gap-2 mb-1">
-                                <Building2 />
-                                <div className="font-bold">Find us</div>
+                            <div className="flex gap-2 mb-2">
+                                <Building2 className="w-5 h-5 text-primary" />
+                                <div className="font-bold text-lg">{findUs}</div>
                             </div>
-
-                            <div>742 Evergreen Terrace, Springfield, IL 62704</div>
+                            <div className="text-muted-foreground pl-7">
+                                <p className="font-medium text-foreground mb-1">{currentBranch.name}</p>
+                                <p>{currentBranch.address}</p>
+                            </div>
                         </div>
 
-                        <div>
-                            <div className="flex gap-2 mb-1">
-                                <Phone />
-                                <div className="font-bold">Call us</div>
-                            </div>
-
-                            <div>+1 (619) 123-4567</div>
-                        </div>
-
-                        <div>
-                            <div className="flex gap-2 mb-1">
-                                <Mail />
-                                <div className="font-bold">Mail US</div>
-                            </div>
-
-                            <div>leomirandadev@gmail.com</div>
-                        </div>
-
-                        <div>
-                            <div className="flex gap-2">
-                                <Clock />
-                                <div className="font-bold">Visit us</div>
-                            </div>
-
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            {/* Phone Numbers */}
                             <div>
-                                <div>Monday - Friday</div>
-                                <div>8AM - 4PM</div>
+                                {currentBranch.phone.length > 0 && (
+                                    <div>
+                                        <div className="flex gap-2 mb-3">
+                                            <Phone className="w-5 h-5 text-primary" />
+                                            <div className="font-bold text-lg">{callUs}</div>
+                                        </div>
+
+                                        <div className="space-y-3 pl-7">
+                                            {currentBranch.phone.map((entry, idx) => (
+                                                <div key={idx}>
+                                                    <Label className="text-sm font-medium text-muted-foreground">
+                                                        {entry.name}
+                                                    </Label>
+                                                    <p className="text-foreground font-medium">
+                                                        {entry.number}
+                                                    </p>
+                                                    {idx !== currentBranch.phone.length - 1 && (
+                                                        <Separator className="mt-2" />
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Email and Office Hours */}
+                            <div className="space-y-6">
+                                {/* Email */}
+                                <div>
+                                    <div className="flex gap-2 mb-2">
+                                        <Mail className="w-5 h-5 text-primary" />
+                                        <div className="font-bold text-lg">{mailUs}</div>
+                                    </div>
+                                    <div className="text-foreground font-medium pl-7">
+                                        {currentBranch.email}
+                                    </div>
+                                </div>
+
+                                {/* Office Hours */}
+                                <div>
+                                    {currentBranch.officeHours.length > 0 && (
+                                        <div>
+                                            <div className="flex gap-2 mb-2">
+                                                <Clock className="w-5 h-5 text-primary" />
+                                                <div className="font-bold text-lg">{visitUs}</div>
+                                            </div>
+                                            <div className="space-y-1 pl-7">
+                                                {currentBranch.officeHours.map((entry, idx) => (
+                                                    <p key={idx} className="text-muted-foreground">
+                                                        <span className="font-medium text-foreground">
+                                                            {entry.day}:
+                                                        </span>{" "}
+                                                        {entry.time}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <Card className="bg-muted/60 dark:bg-card">
-                    <CardHeader className="text-primary text-2xl"> </CardHeader>
-                    <CardContent>
-                        <Form {...form}>
-                            <form
-                                onSubmit={form.handleSubmit(onSubmit)}
-                                className="grid w-full gap-4"
-                            >
-                                <div className="flex flex-col md:!flex-row gap-8">
-                                    <FormField
-                                        control={form.control}
-                                        name="firstName"
-                                        render={({ field }) => (
-                                            <FormItem className="w-full">
-                                                <FormLabel>First Name</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Leopoldo" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="lastName"
-                                        render={({ field }) => (
-                                            <FormItem className="w-full">
-                                                <FormLabel>Last Name</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Miranda" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col gap-1.5">
-                                    <FormField
-                                        control={form.control}
-                                        name="email"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Email</FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        type="email"
-                                                        placeholder="leomirandadev@gmail.com"
-                                                        {...field}
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col gap-1.5">
-                                    <FormField
-                                        control={form.control}
-                                        name="subject"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Subject</FormLabel>
-                                                <Select
-                                                    onValueChange={field.onChange}
-                                                    defaultValue={field.value}
-                                                >
-                                                    <FormControl>
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder="Select a subject" />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="Web Development">
-                                                            Web Development
-                                                        </SelectItem>
-                                                        <SelectItem value="Mobile Development">
-                                                            Mobile Development
-                                                        </SelectItem>
-                                                        <SelectItem value="Figma Design">
-                                                            Figma Design
-                                                        </SelectItem>
-                                                        <SelectItem value="REST API">REST API</SelectItem>
-                                                        <SelectItem value="FullStack Project">
-                                                            FullStack Project
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col gap-1.5">
-                                    <FormField
-                                        control={form.control}
-                                        name="message"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Message</FormLabel>
-                                                <FormControl>
-                                                    <Textarea
-                                                        rows={5}
-                                                        placeholder="Your message..."
-                                                        className="resize-none"
-                                                        {...field}
-                                                    />
-                                                </FormControl>
-
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
-                                <Button className="mt-4">Send message</Button>
-                            </form>
-                        </Form>
+                {/* Map */}
+                <Card className="overflow-hidden">
+                    <CardContent className="p-0">
+                        <iframe
+                            src={currentBranch.iframe}
+                            width="100%"
+                            height="550"
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="border-0"
+                            title={`${currentBranch.name} Location`}
+                        />
                     </CardContent>
-
-                    <CardFooter></CardFooter>
                 </Card>
             </section>
         </section>
     );
-};
+}

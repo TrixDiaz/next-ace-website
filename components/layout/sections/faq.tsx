@@ -13,39 +13,33 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
     {
-        question: "Is this template free?",
-        answer: "Yes. It is a free NextJS Shadcn template.",
+        question: "Fasting  1",
+        answer: "Required Fasting of 6 to 8 hours",
         value: "item-1",
     },
     {
-        question: "Duis aute irure dolor in reprehenderit in voluptate velit?",
+        question: "Fasting 2",
         answer:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam consectetur sapiente, iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+            "Required Fasting 10 to 12 hours",
         value: "item-2",
     },
     {
         question:
-            "Lorem ipsum dolor sit amet Consectetur natus dolor minus quibusdam?",
+            "Stress Test",
         answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis.",
+            "For Stress test schedule, Monday 1pm (Cut off time 3pm) Fri and Sat 9am (Cut off time 3pm) then Tues-Wed-Thurs 8am (Cut off time 2pm). For the preparation: Eat light meal, wear loose shirt and wear comfortable shoes. Thank you.",
         value: "item-3",
     },
     {
-        question: "Excepteur sint occaecat cupidata non proident sunt?",
-        answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+        question: "Vaccine",
+        answer: "Hi! For the price and availability of Vaccines, please call or text the Doctor's Secretary at 0919-9962690. Thank you",
         value: "item-4",
-    },
-    {
-        question:
-            "Enim ad minim veniam, quis nostrud exercitation ullamco laboris?",
-        answer: "consectetur adipisicing elit. Sint labore.",
-        value: "item-5",
     },
 ];
 
 export const FAQSection = () => {
     return (
-        <section id="faq" className="container md:w-[50%] mx-auto py-24 sm:py-32">
+        <section id="faq" className="container max-w-7xl mx-auto py-12">
             <div className="text-center mb-8">
                 <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
                     FAQS
@@ -57,7 +51,7 @@ export const FAQSection = () => {
             </div>
 
             <Accordion type="single" collapsible className="AccordionRoot">
-                {FAQList.map(({ question, answer, value }) => (
+                {FAQList.map(({question, answer, value}) => (
                     <AccordionItem key={value} value={value}>
                         <AccordionTrigger className="text-left">
                             {question}

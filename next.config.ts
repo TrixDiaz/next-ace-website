@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
     images: {
@@ -6,8 +6,15 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 'avatars.githubusercontent.com',
+                port: '',
+                pathname: '/**',
             },
-
+            {
+                protocol: 'https',
+                hostname: 'picsum.photos',
+                port: '',
+                pathname: '/**',
+            },
         ],
         domains: [
             'i.pravatar.cc',
