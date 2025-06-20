@@ -342,16 +342,16 @@ export const DoctorSection = () => {
                 {filteredTeamList.map((member, index) => (
                     <Card
                         key={index}
-                        className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full overflow-hidden group"
+                        className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full overflow-hidden"
                     >
                         <CardHeader className="p-0">
                             <div className="relative overflow-hidden">
                                 <Image
                                     src={member.imageUrl}
-                                    alt={`Dr. ${member.firstName} ${member.lastName}`}
+                                    alt={`Dr. ${member.firstName} " " ${member.lastName}`}
                                     width={400}
                                     height={400}
-                                    className="w-full h-48 sm:h-56 object-cover saturate-0 transition-all duration-300 group-hover:saturate-100 group-hover:scale-105"
+                                    className="w-full h-48 sm:h-56 object-cover transition-all duration-300"
                                 />
                                 {/* Branch Badge */}
                                 <div className="absolute top-3 right-3">

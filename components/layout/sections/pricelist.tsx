@@ -46,10 +46,10 @@ const LabPricelistTableSection = () => {
         { category: 'Clinical Chemistry', test: 'ALBUMIN', code: '', fairviewPrice: 200.00, novalichesPrice: 195.00, valenzuelaPrice: 205.00 },
         { category: 'Clinical Chemistry', test: 'TOTAL PROTEIN (Albumin, Globulin, A/G Ratio)', code: '', fairviewPrice: 400.00, novalichesPrice: 420.00, valenzuelaPrice: 390.00 },
         { category: 'Clinical Chemistry', test: '2Hr. ORAL GLUCOSE TOLERANCE TEST (OGTT)', code: '', fairviewPrice: 700.00, novalichesPrice: 680.00, valenzuelaPrice: 720.00 },
-        { category: 'Clinical Chemistry', test: '3 Hr. OGTT', code: '', fairviewPrice: 1000.00, novalichesPrice: 1050.00, valenzuelaPrice: 980.00 },
+        { category: 'Clinical Chemistry', test: '3 Hr. OGTT', code: '', fairviewPrice: 1000.00, novalichesPrice: 1000.00, valenzuelaPrice: 980.00 },
         { category: 'Clinical Chemistry', test: 'HBA1C (GLYCOSYLATED Hgb)', code: '', fairviewPrice: 600.00, novalichesPrice: 590.00, valenzuelaPrice: 610.00 },
         { category: 'Clinical Chemistry', test: 'ORAL GLUCOSE CHALLENGE TEST (OGCT)', code: '', fairviewPrice: 300.00, novalichesPrice: 310.00, valenzuelaPrice: 290.00 },
-        { category: 'Clinical Chemistry', test: 'EGFR', code: '', fairviewPrice: 280.00, novalichesPrice: 275.00, valenzuelaPrice: 285.00 },
+        { category: 'Clinical Chemistry', test: 'EGFR', code: '', fairviewPrice: 280.00, novalichesPrice: 280.00, valenzuelaPrice: 285.00 },
 
         // Hematology
         { category: 'Hematology', test: 'COMPLETE BLOOD COUNT', code: '', fairviewPrice: 300.00, novalichesPrice: 320.00, valenzuelaPrice: 295.00 },

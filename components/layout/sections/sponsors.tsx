@@ -5,12 +5,20 @@ import Image from "next/image";
 
 const sponsors = [
     { src: "/hmo/amaphil.png", name: "Amaphil" },
-    { src: "/hmo/asianlife.png", name: "AsianLife" },
-    { src: "/hmo/avega.png", name: "Avega" },
-    { src: "/hmo/cocolife.png", name: "Cocolife" },
     { src: "/hmo/intellicare.png", name: "Intellicare" },
+    { src: "/hmo/fortunecare.png", name: "Fortune" },
+    { src: "/hmo/generali.png", name: "Generali" },
+    { src: "/hmo/asianlife.png", name: "AsianLife" },
+    { src: "/hmo/kaiser.png", name: "Kaiser" },
+    { src: "/hmo/philcare.png", name: "Philcare" },
+    { src: "/hmo/flexicare.png", name: "FlexiCare" },
+    { src: "/hmo/sunlife.png", name: "Sunlife" },
+    { src: "/hmo/medilink.png", name: "Medilink" },
+    { src: "/hmo/cocolife.png", name: "Cocolife" },
     { src: "/hmo/eastwest.png", name: "EastWest" },
+    { src: "/hmo/avega.png", name: "Avega" },
     { src: "/hmo/maxicare.png", name: "Maxicare" },
+    { src: "/hmo/icare.png", name: "iCare" },
 ];
 
 export const SponsorsSection = () => {
